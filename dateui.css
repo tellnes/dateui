@@ -1,0 +1,98 @@
+/* calendar */
+.dui-picker {
+  position: relative;
+  background-color: #FFF;
+  z-index: 1000;
+  border: 1px solid #CCC;
+  font-size: 12px;
+  font-family: Helvetica, Arial, sans-serif;
+  disply: inline-block;
+  width: 170px;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+}
+.dui-picker-header {
+  display: table;
+  width: 100%;
+}
+.dui-picker-month {
+  text-align: center;
+  padding: 6px 0;
+  display: table-cell;
+}
+.dui-picker-month-left,
+.dui-picker-month-right {
+  font-size: 10px;
+  padding: 0px 0;
+  width: 24px;
+  text-align: center;
+  cursor: pointer;
+  display: table-cell;
+}
+.dui-picker-month-left {
+}
+.dui-picker-month-right {
+}
+.dui-picker-year {
+  display: table-cell;
+  width: 50px;
+}
+.dui-picker table {
+  clear: both;
+  border-collapse: collapse;
+  width: 100%;
+}
+.dui-picker th,
+.dui-picker td {
+  padding: 3px 2px;
+  height1: auto;
+  text-align: center;
+}
+.dui-picker th {
+  font-weight: normal;
+}
+.dui-picker td {
+  font-weight: bold;
+}
+
+.dui-picker-day {
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.dui-picker-selected {
+  background-color: #95d1ff !important;
+}
+.dui-picker-week {
+  opacity: 0.7;
+}
+.dui-picker-offmonth {
+  color: #999;
+}
+.dui-picker-today {
+  border-radius: 0 !important;
+  border: 1px solid;
+  padding: 1px !important;
+}
+.dui-picker-disabled {
+  font-weight: normal !important;
+  background: inherit !important;
+  cursor: inherit;
+  color: #999;
+}
+.dui-picker-current {
+  background: #CCC1;
+  text-decoration: underline;
+}
+.dui-picker-pick-day .dui-picker-day:hover {
+  background: #EEE;
+}
+.dui-picker-pick-month  tbody:hover td.dui-picker-date:not(.dui-picker-off) {
+  background: #EEE;
+}
+.dui-picker-pick-week  tr:hover td {
+  background: #EEE;
+}

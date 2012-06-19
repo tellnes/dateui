@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="dateui.css" type="text/css">
+
+<script src="http://ajax.tsysapis.com/yocto/0.0.1.js"></script>
+<script src="dateui.js"></script>
+
+<form>
+
+<div id="cal"></div>
+
+<script>
+  var picker = new (dateui.Picker)( { value: new Date(2012, 5, 7)
+                                    , min:  new Date(2001, 5, 2)
+                                    , max:  new Date(2012, 5, 22)
+                                    })
+  picker.appendTo(cal)
+</script>
+
+
+<hr>
+
+<input id="date1" type="date">
+<br>
+<input id="date2" type="date" value="2011-05-05" min="2011-05-03" max="2011-05-14">
+
+<script>
+window.onload = function() {
+  $('date1').dateui({ showWeekNumbers: false })
+
+  $('date2').dateui({ showWeekNumbers: false
+                    , formater: function(date) {
+                      return date.toDateString()
+                    }
+                    })
+}
+
+</script>
+
+</form>
