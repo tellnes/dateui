@@ -7,5 +7,5 @@
     "type": "git",
     "url": "git://github.com/tellnes/dateui.git"
   },
-  "main": "dateiu.js"
+  "main": "dateui.js"
 }
