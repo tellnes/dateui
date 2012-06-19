@@ -11,7 +11,20 @@ var files = [ 'events'
             , 'exports'
             ]
 
-var code = '(function($, exports){\n'
+var pkg = require('./package.json')
+
+var code =  [ '/*'
+            , ' * DateUI ' + pkg.version
+            , ' *'
+            , ' * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>'
+            , ' * Licensed under the MIT licence.'
+            , ' *'
+            , ' * Date: ' + new Date()
+            , ' */'
+            , ''
+            , '(function($, exports){'
+            , ''
+            ].join('\n')
 
 files.forEach(function(file) {
   file = path.resolve('src', file + '.js')

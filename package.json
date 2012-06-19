@@ -1,0 +1,11 @@
+{
+  "author": "Christian Tellnes <christian@tellnes.no> (http://christian.tellnes.com/)",
+  "name": "dateui",
+  "description": "DateUI",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tellnes/dateui.git"
+  },
+  "main": "dateiu.js"
+}
