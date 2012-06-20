@@ -118,3 +118,5 @@ function fromComperable(n) {
                   , parseInt(n % 10000 / 100, 10)
                   , parseInt(n % 10000 % 100), 10)
 }
+
+exports.valueToDate = valueToDate
