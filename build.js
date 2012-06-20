@@ -8,7 +8,6 @@ var files = [ 'events'
             , 'i18n'
             , 'picker'
             , 'yocto'
-            , 'exports'
             ]
 
 var pkg = require('./package.json')
