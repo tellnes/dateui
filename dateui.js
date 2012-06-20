@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Wed Jun 20 2012 03:36:57 GMT+0200 (CEST)
+ * Date: Wed Jun 20 2012 04:01:39 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -172,6 +172,8 @@ function fromComperable(n) {
                   , parseInt(n % 10000 / 100, 10)
                   , parseInt(n % 10000 % 100), 10)
 }
+
+exports.valueToDate = valueToDate
 
 var defaultOptions =  { showWeekNumbers: false
                       , showWeekends: true
@@ -669,7 +671,5 @@ $.prototype.dateui = function(options) {
   picker.assignTo(this)
   return this
 }
-
-exports.Picker = Picker
 
 }(Yocto, typeof module !== 'undefined' && module.exports || (window['dateui'] = {})))
