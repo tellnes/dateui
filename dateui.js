@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Wed Jun 20 2012 02:57:33 GMT+0200 (CEST)
+ * Date: Wed Jun 20 2012 03:00:17 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -399,7 +399,7 @@ Picker.prototype.assignTo = function(element) {
     var v = picker.value
     if (isValidDate(v)) {
       element.value([v.getFullYear()
-                    , zeroFill(v.getMonth(), 2)
+                    , zeroFill( (v.getMonth() + 1), 2)
                     , zeroFill(v.getDate(), 2)
                     ].join('-') )
 

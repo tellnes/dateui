@@ -158,7 +158,7 @@ Picker.prototype.assignTo = function(element) {
     var v = picker.value
     if (isValidDate(v)) {
       element.value([v.getFullYear()
-                    , zeroFill(v.getMonth(), 2)
+                    , zeroFill( (v.getMonth() + 1), 2)
                     , zeroFill(v.getDate(), 2)
                     ].join('-') )
 
