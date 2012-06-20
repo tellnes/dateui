@@ -103,6 +103,8 @@ Picker.prototype.setOptions = function(options) {
     this.max = toComperable(this.options.max)
     delete this.options.max
   }
+
+  if (!this.build) this.update()
 }
 
 Picker.prototype.assignTo = function(element) {

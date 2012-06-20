@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Wed Jun 20 2012 16:12:37 GMT+0200 (CEST)
+ * Date: Wed Jun 20 2012 18:09:49 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -366,6 +366,8 @@ Picker.prototype.setOptions = function(options) {
     this.max = toComperable(this.options.max)
     delete this.options.max
   }
+
+  if (!this.build) this.update()
 }
 
 Picker.prototype.assignTo = function(element) {
