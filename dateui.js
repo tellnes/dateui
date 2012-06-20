@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Wed Jun 20 2012 04:01:39 GMT+0200 (CEST)
+ * Date: Wed Jun 20 2012 04:15:06 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -153,6 +153,47 @@ function valueToDate(type, date) {
 
 }
 
+function valueToNumber(type, value) {
+  var d
+
+  switch(type) {
+  case 'number': // fall through
+  case 'range':
+    return parseFloat(value)
+
+  case 'month':
+    d = valueToDate(type, value)
+    return d ? (d.getFullYear() - 1970) * 12 + d.getMonth() - 1 : NaN
+
+  case 'datetime': // fall through
+  case 'date': // fall through
+  case 'week': // fall through
+  case 'time': // fall through
+    d = valueToDate(type, value)
+    return d ? d.getTime() : NaN
+
+  case 'datetime-local':
+    if (!value) return NaN
+
+    var ms = value.length - 21
+    ms = Number(zeroFill(value.substr(20, ms), 3))
+
+    d = new Date(Date.UTC ( d.substr(0, 4) // year
+                          , Number(d.substr(5, 2))-1 // month
+                          , d.substr(8, 2) // date
+                          , d.substr(11, 2) // hours
+                          , d.substr(14, 2) // minutes
+                          , d.substr(17, 2) // seconds
+                          , ms // milliseconds
+                          ) )
+
+    return d.getTime()
+
+  }
+
+  return null
+}
+
 function toComperable(date) {
   if (!date) return null
   if (!isValidDate(date)) return NaN
@@ -174,6 +215,7 @@ function fromComperable(n) {
 }
 
 exports.valueToDate = valueToDate
+exports.valueToNumber = valueToNumber
 
 var defaultOptions =  { showWeekNumbers: false
                       , showWeekends: true
