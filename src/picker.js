@@ -117,7 +117,7 @@ Picker.prototype.assignTo = function(element) {
     , visualElement = element
     , formater = picker.options.formater
 
-  picker.setOptions({ value: valueToDate('date', element.value())
+  picker.setOptions({ value: valueToDate('date', element.value)
                     , min: valueToDate('date', element.getAttribute('min'))
                     , max: valueToDate('date', element.getAttribute('max'))
                     })
@@ -158,12 +158,12 @@ Picker.prototype.assignTo = function(element) {
 
     var v = picker.value
     if (isValidDate(v)) {
-      element.value([v.getFullYear()
-                    , zeroFill( (v.getMonth() + 1), 2)
-                    , zeroFill(v.getDate(), 2)
-                    ].join('-') )
+      element.value = [ v.getFullYear()
+                      , zeroFill( (v.getMonth() + 1), 2)
+                      , zeroFill(v.getDate(), 2)
+                      ].join('-')
 
-      if (formater) visualElement.value(formater(v))
+      if (formater) visualElement.value = formater(v)
 
       ignoreChange = true
       element.fire('change')
@@ -172,7 +172,7 @@ Picker.prototype.assignTo = function(element) {
     visualElement.blur()
   }
   function onElementChange() {
-    picker.iv.value = valueToDate('date', element.value())
+    picker.iv.value = valueToDate('date', element.value)
     picker.iv.use()
   }
   function onDocumentMouseDown(event) {
@@ -366,7 +366,7 @@ Picker.prototype.update = function() {
     , A
 
   this.elements.month.html(i18n.months[month])
-  this.elements.year.value(year)
+  this.elements.year.value = year
 
   current = new Date(year, month, 0) // setting day to 0 goes to last date of previous month
 
@@ -418,7 +418,7 @@ Picker.prototype.handleEvent = function(event) {
     , elements = this.elements
 
   if (target.equal(elements.year)) {
-    this.iv.year = parseInt(target.value(), 10)
+    this.iv.year = parseInt(target.value, 10)
 
   } else if (target.equal(elements.left)) {
     this.iv.month -= 1
