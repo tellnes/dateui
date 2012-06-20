@@ -200,7 +200,9 @@ Picker.prototype.assignTo = function(element) {
   function onBlur(event) {
     if (ignoreBlur) {
       event.preventDefault()
-      if (!wasYear) visualElement.focus()
+      if (!wasYear) setTimeout(function() {
+                      visualElement.focus()
+                    }, 0)
 
     } else {
       // Hide

@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Wed Jun 20 2012 23:06:33 GMT+0200 (CEST)
+ * Date: Thu Jun 21 2012 00:25:48 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -463,7 +463,9 @@ Picker.prototype.assignTo = function(element) {
   function onBlur(event) {
     if (ignoreBlur) {
       event.preventDefault()
-      if (!wasYear) visualElement.focus()
+      if (!wasYear) setTimeout(function() {
+                      visualElement.focus()
+                    }, 0)
 
     } else {
       // Hide
