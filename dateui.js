@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Wed Jun 20 2012 02:53:27 GMT+0200 (CEST)
+ * Date: Wed Jun 20 2012 02:57:33 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -365,11 +365,11 @@ Picker.prototype.assignTo = function(element) {
 
   if (formater) {
     visualElement = element.cloneNode()
-    element.setAttributes({ type: 'hidden'
-                          , name: null
-                          } )
+    element.setAttribute('type', 'hidden')
 
-    visualElement .setAttribute('value', formater(picker.value))
+    visualElement .setAttributes( { value: formater(picker.value)
+                                  , name: null
+                                  })
                   .insertAfter(element)
   }
 
