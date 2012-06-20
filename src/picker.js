@@ -132,7 +132,7 @@ Picker.prototype.assignTo = function(element) {
 
 
   if (formater) {
-    visualElement = element.cloneNode()
+    visualElement = element.cloneNode(false)
     element.setAttribute('type', 'hidden')
 
     visualElement .attr('value', formater(picker.value))
