@@ -112,6 +112,7 @@ Picker.prototype.assignTo = function(element) {
 
   var picker = this
     , ignoreBlur = false
+    , ignoreChange = false
     , visualElement = element
     , formater = picker.options.formater
 
@@ -152,6 +153,8 @@ Picker.prototype.assignTo = function(element) {
 
 
   function onPickerChange() {
+    if (ignoreChange) return ignoreChange = false
+
     var v = picker.value
     if (isValidDate(v)) {
       element.value([v.getFullYear()
@@ -160,6 +163,9 @@ Picker.prototype.assignTo = function(element) {
                     ].join('-') )
 
       if (formater) visualElement.value(formater(v))
+
+      ignoreChange = true
+      element.fire('change')
     }
     hide()
   }
