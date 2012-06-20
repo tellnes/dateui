@@ -113,6 +113,7 @@ Picker.prototype.assignTo = function(element) {
   var picker = this
     , ignoreBlur = false
     , ignoreChange = false
+    , wasYear = false
     , visualElement = element
     , formater = picker.options.formater
 
@@ -136,14 +137,14 @@ Picker.prototype.assignTo = function(element) {
 
   element.on('change', onElementChange)
   visualElement.on('focus', show)
-  visualElement.on('blur', onElementBlur)
+  visualElement.on('blur', onBlur)
   visualElement.on('keydown', onElementKeyDown)
 
   picker.on('destroy', function() {
     picker.removeListener(onPickerChange)
     element.off('change', onElementChange)
     visualElement.off('focus', show)
-    visualElement.off('blur', onElementBlur)
+    visualElement.off('blur', onBlur)
     visualElement.off('keydown', onElementKeyDown)
     if (visualElement != element) {
       element.setAttribute('type', visualElement.getAttribute('type'))
@@ -167,7 +168,8 @@ Picker.prototype.assignTo = function(element) {
       ignoreChange = true
       element.fire('change')
     }
-    hide()
+
+    visualElement.blur()
   }
   function onElementChange() {
     picker.iv.value = valueToDate('date', element.value())
@@ -180,24 +182,27 @@ Picker.prototype.assignTo = function(element) {
       return
 
     } else if (target.equal(picker.elements.year)) {
-      ignoreBlur = true
+      ignoreBlur = wasYear = true
 
     } else if ( picker.element.equal( target.up('.' + picker.options.className)) ) {
-      visualElement.focus()
       ignoreBlur = true
 
-    } else {
-      //hide()
     }
   }
 
-  function onElementBlur(event) {
+  function onBlur(event) {
     if (ignoreBlur) {
-      ignoreBlur = false
       event.preventDefault()
+      if (!wasYear) visualElement.focus()
+
     } else {
-      hide()
+      // Hide
+      $(document).off('mousedown', onDocumentMouseDown)
+      picker.elements.year.off('blur', onBlur)
+      picker.element.remove()
     }
+
+    ignoreBlur = wasYear = false
   }
 
   function show() {
@@ -209,11 +214,7 @@ Picker.prototype.assignTo = function(element) {
     picker.element.insertAfter(visualElement)
 
     $(document).on('mousedown', onDocumentMouseDown)
-  }
-
-  function hide() {
-    $(document).off('mousedown', onDocumentMouseDown)
-    picker.element.remove()
+    picker.elements.year.on('blur', onBlur)
   }
 
   function onElementKeyDown(event) {
