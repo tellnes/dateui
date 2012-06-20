@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Wed Jun 20 2012 03:00:17 GMT+0200 (CEST)
+ * Date: Wed Jun 20 2012 03:04:34 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -239,6 +239,8 @@ var i18n =  { week:         'Week'
                             , 'S'
                             ]
             }
+
+exports.i18n = i18n
 function InternalValue(picker) {
   var d = new Date()
   this.value = new Date(d.getFullYear(), d.getMonth(), d.getDate())

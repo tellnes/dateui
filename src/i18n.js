@@ -55,3 +55,5 @@ var i18n =  { week:         'Week'
                             , 'S'
                             ]
             }
+
+exports.i18n = i18n
