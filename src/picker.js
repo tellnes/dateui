@@ -129,9 +129,8 @@ Picker.prototype.assignTo = function(element) {
     visualElement = element.cloneNode()
     element.setAttribute('type', 'hidden')
 
-    visualElement .setAttributes( { value: formater(picker.value)
-                                  , name: null
-                                  })
+    visualElement .attr('value', formater(picker.value))
+                  .attr('name', null)
                   .insertAfter(element)
   }
 
