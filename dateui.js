@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Wed Jun 20 2012 03:04:34 GMT+0200 (CEST)
+ * Date: Wed Jun 20 2012 03:08:12 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -184,18 +184,7 @@ var defaultOptions =  { showWeekNumbers: false
 exports.options = defaultOptions
 
 var i18n =  { week:         'Week'
-            , today:        'To day'
-            , cancel:       'Cancel'
-            , OK:           'OK'
             , weekChar:     'W'
-            , daysShort:    [ 'Sun'
-                            , 'Mon'
-                            , 'Tue'
-                            , 'Wed'
-                            , 'Thu'
-                            , 'Fri'
-                            , 'Sat'
-                            ]
             , days:         [ 'Sunday'
                             , 'Monday'
                             , 'Tuesday'
@@ -203,19 +192,6 @@ var i18n =  { week:         'Week'
                             , 'Thursday'
                             , 'Friday'
                             , 'Saturday'
-                            ]
-            , monthsShort:  [ 'Jan'
-                            , 'Feb'
-                            , 'Mar'
-                            , 'Apr'
-                            , 'May'
-                            , 'Jun'
-                            , 'Jul'
-                            , 'Aug'
-                            , 'Sep'
-                            , 'Oct'
-                            , 'Nov'
-                            , 'Dec'
                             ]
             , months:       [ 'January'
                             , 'February'
