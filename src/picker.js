@@ -104,7 +104,11 @@ Picker.prototype.setOptions = function(options) {
     delete this.options.max
   }
 
-  this.disabled = this.options.disabled
+  if (this.disabled != this.options.disabled) {
+    this.disabled = this.options.disabled
+
+    if (!this.build) this.element.classList[this.disabled ? 'add' : 'remove'](this._cnp + 'disabled')
+  }
 
   if (!this.build) this.update()
 }
@@ -284,9 +288,8 @@ Picker.prototype.build = function() {
   tr = options.className + ' ' + cnp + tr.join(' ' + cnp)
   element = this.element = $.create('div', {className: tr})
 
-  if (this.disabled) {
-    $.create('div', {className: cnp + 'disable'}).appendTo(element)
-  }
+  elements.disabled = $ .create('div', {className: cnp + 'disable'})
+                        .appendTo(element)
 
   header = $.create('div', {className: cnp + 'header'})
             .appendTo(element)
@@ -314,7 +317,6 @@ Picker.prototype.build = function() {
                                       , min: '0'
                                       , max: 9999
                                       , tabindex: '-1'
-                                      , disabled: !!this.disabled
                                       })
                     .on('change', this)
                     .appendTo( $.create('div', {className: cnp + 'year' }).appendTo(header) )

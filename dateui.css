@@ -100,7 +100,7 @@
 .dui-picker-disabled {
   opacity: 0.5;
 }
-.dui-picker-disable {
+.dui-picker-disabled .dui-picker-disable {
   position: absolute;
   top: 0;
   left: 0;
