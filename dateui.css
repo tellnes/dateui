@@ -77,7 +77,7 @@
   border: 1px solid;
   padding: 1px !important;
 }
-.dui-picker-disabled {
+.dui-picker-day-disabled {
   font-weight: normal !important;
   background: inherit !important;
   cursor: inherit;
@@ -95,4 +95,15 @@
 }
 .dui-picker-pick-week  tr:hover td {
   background: #EEE;
+}
+
+.dui-picker-disabled {
+  opacity: 0.5;
+}
+.dui-picker-disable {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

@@ -104,6 +104,8 @@ Picker.prototype.setOptions = function(options) {
     delete this.options.max
   }
 
+  this.disabled = this.options.disabled
+
   if (!this.build) this.update()
 }
 
@@ -277,8 +279,14 @@ Picker.prototype.build = function() {
     , table
     , header
 
-  i = options.className + ' ' + cnp + 'pick-' + options.pick
-  element = this.element = $.create('div', {className: i})
+  tr =  ['pick-' + options.pick]
+  if (this.disabled) tr.push('disabled')
+  tr = options.className + ' ' + cnp + tr.join(' ' + cnp)
+  element = this.element = $.create('div', {className: tr})
+
+  if (this.disabled) {
+    $.create('div', {className: cnp + 'disable'}).appendTo(element)
+  }
 
   header = $.create('div', {className: cnp + 'header'})
             .appendTo(element)
@@ -302,7 +310,12 @@ Picker.prototype.build = function() {
                     .appendTo(header)
 
   // Year
-  elements.year = $ .create('input', {type: 'number', min: '0', max: 9999, tabindex: '-1'})
+  elements.year = $ .create('input',  { type: 'number'
+                                      , min: '0'
+                                      , max: 9999
+                                      , tabindex: '-1'
+                                      , disabled: !!this.disabled
+                                      })
                     .on('change', this)
                     .appendTo( $.create('div', {className: cnp + 'year' }).appendTo(header) )
 
@@ -403,7 +416,7 @@ Picker.prototype.update = function() {
       if (A == today) cn.push('today')
       if (A == value) cn.push('selected')
       if (A == this.iv) cn.push('current')
-      if ((this.min && A < this.min) || (this.max && A > this.max)) cn.push('disabled')
+      if ((this.min && A < this.min) || (this.max && A > this.max)) cn.push('day-disabled')
 
       tr.cells[j].className = cnp + cn.join(' ' + cnp)
 
@@ -415,6 +428,8 @@ Picker.prototype.update = function() {
 }
 
 Picker.prototype.handleEvent = function(event) {
+  if (this.disabled) return
+
   var target = $(event.target)
     , elements = this.elements
 
