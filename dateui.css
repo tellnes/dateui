@@ -40,6 +40,9 @@
   display: table-cell;
   width: 50px;
 }
+.dui-picker-year input {
+  width: 44px;
+}
 .dui-picker table {
   clear: both;
   border-collapse: collapse;
