@@ -322,6 +322,7 @@ Picker.prototype.build = function() {
                                       , min: '0'
                                       , max: 9999
                                       , tabindex: '-1'
+                                      , size: 6
                                       })
                     .on('change', this)
                     .appendTo( $.create('div', {className: cnp + 'year' }).appendTo(header) )

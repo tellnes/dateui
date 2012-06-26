@@ -41,7 +41,7 @@
   width: 50px;
 }
 .dui-picker-year input {
-  width: 44px;
+  text-align: center;
 }
 .dui-picker table {
   clear: both;
