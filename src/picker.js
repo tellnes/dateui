@@ -135,12 +135,15 @@ Picker.prototype.assignTo = function(element) {
 
 
   if (formater) {
-    visualElement = element.cloneNode(false)
-    element.setAttribute('type', 'hidden')
+    var attr = element.attr()
 
-    visualElement .attr('value', formater(picker.value))
-                  .attr('name', null)
-                  .insertAfter(element)
+    visualElement = $ .create('input',  { type: 'text'
+                                        , className: attr.className
+                                        , value: formater(picker.value)
+                                        })
+                      .insertAfter(element)
+
+    element.setAttribute('type', 'hidden')
   }
 
   picker.on('change', onPickerChange)
