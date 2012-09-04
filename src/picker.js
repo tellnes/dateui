@@ -119,7 +119,7 @@ Picker.prototype.assignTo = function(element) {
   if (element.nodeName != 'INPUT') throw new TypeError('First argument to Picker#assignTo must be a HTMLInputElement')
 
   // Ignore when there is native date support
-  if (element._.type == 'date') return
+  if (element._.type == 'date' && !this.options.formater) return
 
   var picker = this
     , ignoreBlur = false
