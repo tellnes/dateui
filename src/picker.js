@@ -369,6 +369,8 @@ Picker.prototype.build = function() {
   }
 
   this.build = null
+
+  this.emit('build')
 }
 
 Picker.prototype.update = function() {
@@ -436,6 +438,8 @@ Picker.prototype.update = function() {
       current.setDate(da + ( (!options.showWeekends && current.getDay() === 5) ? 3 : 1) )
     }
   }
+
+  this.emit('update')
 }
 
 Picker.prototype.handleEvent = function(event) {
