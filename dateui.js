@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Christian Tellnes <christian@tellnes.no>
  * Licensed under the MIT licence.
  *
- * Date: Thu Jun 21 2012 00:25:48 GMT+0200 (CEST)
+ * Date: Tue Sep 04 2012 02:06:59 GMT+0200 (CEST)
  */
 
 (function($, exports){
@@ -381,6 +381,9 @@ Picker.prototype.assignTo = function(element) {
 
   if (element.nodeName != 'INPUT') throw new TypeError('First argument to Picker#assignTo must be a HTMLInputElement')
 
+  // Ignore when there is native date support
+  if (element._.type == 'date' && !this.options.formater) return
+
   var picker = this
     , ignoreBlur = false
     , ignoreChange = false
@@ -395,12 +398,15 @@ Picker.prototype.assignTo = function(element) {
 
 
   if (formater) {
-    visualElement = element.cloneNode(false)
-    element.setAttribute('type', 'hidden')
+    var attr = element.attr()
 
-    visualElement .attr('value', formater(picker.value))
-                  .attr('name', null)
-                  .insertAfter(element)
+    visualElement = $ .create('input',  { type: 'text'
+                                        , className: attr.className
+                                        , value: formater(picker.value)
+                                        })
+                      .insertAfter(element)
+
+    element.setAttribute('type', 'hidden')
   }
 
   picker.on('change', onPickerChange)
@@ -582,6 +588,7 @@ Picker.prototype.build = function() {
                                       , min: '0'
                                       , max: 9999
                                       , tabindex: '-1'
+                                      , size: 6
                                       })
                     .on('change', this)
                     .appendTo( $.create('div', {className: cnp + 'year' }).appendTo(header) )
@@ -625,6 +632,8 @@ Picker.prototype.build = function() {
   }
 
   this.build = null
+
+  this.emit('build')
 }
 
 Picker.prototype.update = function() {
@@ -692,6 +701,8 @@ Picker.prototype.update = function() {
       current.setDate(da + ( (!options.showWeekends && current.getDay() === 5) ? 3 : 1) )
     }
   }
+
+  this.emit('update')
 }
 
 Picker.prototype.handleEvent = function(event) {
